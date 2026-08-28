@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.linear_model import LinearRegression
 
-# Training dataset
+# Dataset
 X = np.array([1, 2, 3, 4, 5, 6, 7, 8]).reshape(-1, 1)
 y = np.array([35, 40, 50, 55, 65, 70, 80, 90])
 
@@ -9,10 +9,12 @@ y = np.array([35, 40, 50, 55, 65, 70, 80, 90])
 model = LinearRegression()
 model.fit(X, y)
 
-# Get study hours from user
-hours = float(input("Enter your study hours: "))
+# Study hours for prediction
+study_hours = np.array([[2], [4], [6], [8]])
 
-# Predict score
-prediction = model.predict([[hours]])
+# Predict student scores
+predictions = model.predict(study_hours)
 
-print("Predicted Score:", round(prediction[0], 2))
+# Display predictions
+for hours, score in zip(study_hours, predictions):
+    print(f"Study Hours: {hours[0]} -> Predicted Score: {score:.2f}")
